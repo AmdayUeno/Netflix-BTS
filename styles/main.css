@@ -1,0 +1,321 @@
+:root {
+  --bg: #141414;
+  --bg-gradient: linear-gradient(180deg, #141414 0%, #090909 100%);
+  --panel: rgba(20, 20, 20, 0.65);
+  --panel-strong: rgba(10, 10, 10, 0.8);
+  --text: #e5e5e5;
+  --muted: #b3b3b3;
+  --error: #e50914;
+  --radius: 12px;
+}
+
+:root.light {
+  --bg: #f5f5f5;
+  --bg-gradient: linear-gradient(180deg, #f5f5f5 0%, #e0e0e0 100%);
+  --panel: rgba(255, 255, 255, 0.9);
+  --panel-strong: rgba(245, 245, 245, 0.95);
+  --text: #333333;
+  --muted: #666666;
+  --error: #e50914;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-gradient);
+  color: var(--text);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+}
+
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 1rem 2rem;
+  z-index: 10;
+  font-family: "Bebas Neue", sans-serif;
+  gap: 8px;
+}
+  
+header h2{
+  order: 2;
+  margin: 0;
+  font-size: 17px;
+}
+header .logo {
+  order: 3;
+  width: 90px;
+  height: auto;
+  margin: 0;
+}
+
+header h1 {
+  order: 1;
+  margin: 0;
+  color: #ff000d;
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+#theme-toggle {
+  order: 4;
+  margin-left: auto;
+  position: relative;
+
+  width: 80px;
+  height: 40px;
+  background: #222;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+}
+
+/* bolinha */
+.circle {
+  width: 34px;
+  height: 34px;
+  background: #444; /* DARK */
+  border-radius: 50%;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+/* imagem dentro */
+.circle img {
+  width: 15px;
+  margin-top: 1px;
+}
+
+/* LIGHT MODE */
+.light #theme-toggle {
+  background: #ddd;
+}
+
+.light .circle {
+  left: 43px;
+  background: #fff;
+}
+.light .circle img {
+  left: 43px;
+  margin-top: 10px;
+  width: 38px; 
+}
+
+main {
+  width: 100%;
+  max-width: 1600px;
+  height: 70%;
+  border-radius: var(--radius);
+  background: var(--panel);
+  box-shadow: 20px 16px 36px rgba(32, 32, 32, 0.5);
+  max-width: 100%;
+}
+
+section h2 {
+  text-align: center;
+  margin: 0 0 1.5rem;
+  font-size: clamp(1.6rem, 2.3vw, 2.3rem);
+  color: var(--text);
+  margin-top: 25px;
+  
+}
+
+.profiles {
+  list-style: none;
+  margin: 0;
+  padding: 30px;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.profile button {
+  width: 100%;
+  background: var(--panel-strong);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  color: var(--text);
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.profile button:hover,
+.profile button:focus-visible {
+  border-color: #e50914;
+  box-shadow: 0 0 0 3px rgba(229, 9, 20, 0.22);
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.profile figure {
+  margin: 0;
+  text-align: center;
+}
+
+.profile img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  object-fit: cover;
+}
+
+.profile figcaption {
+  margin-top: 0.5rem;
+  color: var(--text);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+
+@media (max-width: 500px) {
+  body { padding: 1rem; }
+  main { padding: 1rem; }
+  header h1 { font-size: 1.6rem; }
+  .profile figcaption { font-size: 0.9rem; }
+}
+
+/* Responsividade adicional */
+@media (max-width: 1440px) {
+  main {
+    width: 90%;
+    max-width: 1400px;
+    margin-top: 150px;
+  }
+  header {
+    left: 1rem;
+    right: 1rem;
+  }
+  header h1 {
+    font-size: 1.8rem;
+  }
+  .profiles {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 0.8rem;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 1.5rem;
+  }
+  main {
+    width: 95%;
+    max-width: 100%;
+    margin-top: 120px;
+    height: auto;
+    min-height: 60vh;
+  }
+  header {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding: 1rem;
+  }
+  header h1 {
+    font-size: 1.5rem;
+    margin-left: 0;
+    margin-top: 0;
+  }
+  header h2 {
+    position: static;
+    margin-left: 0;
+    margin-top: 0;
+  }
+  header .logo {
+    position: static;
+    margin-left: 0;
+    margin-top: 0;
+    max-width: 70px;
+  }
+  #theme-toggle {
+    position: static;
+    margin-top: 1rem;
+  }
+  .profiles {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 0.6rem;
+    padding: 15px;
+  }
+  .profile button {
+    padding: 0.3rem;
+  }
+  .profile img {
+    border-radius: 8px;
+  }
+  section h2 {
+    font-size: 1.4rem;
+    margin-top: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 1rem;
+  }
+  main {
+    width: 100%;
+    margin-top: 100px;
+    padding: 1rem;
+  }
+  header {
+    padding: 0.5rem;
+  }
+  header h1 {
+    font-size: 1.3rem;
+  }
+  .profiles {
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 0.5rem;
+    padding: 10px;
+  }
+  .profile button {
+    padding: 0.2rem;
+  }
+  .profile figcaption {
+    font-size: 0.8rem;
+  }
+  section h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+}
+p {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #b3b3b3;
+    margin-top: 250px;
+}
+p a {color: #fb1244ff; /* escolhe a cor que quiser */
+}
+
